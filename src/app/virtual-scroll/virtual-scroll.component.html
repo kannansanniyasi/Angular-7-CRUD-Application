@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h4 style="text-align: center;">CDK {{title}}</h4>
+    </div>
+</div>
+
+<div class="row">
+         
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">     
+        <cdk-virtual-scroll-viewport [itemSize] = "20">
+        <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+             <table style="margin-top: 10%;" class="table">
+                <thead>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </thead>
+                <tr *cdkVirtualFor="let user of users | async;let indexNumber=index;">
+                    <td>{{indexNumber+1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            </table>
+        </div>
+     </cdk-virtual-scroll-viewport>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <div cdkDropList [cdkDropListData]="personalList"
+            [cdkDropListConnectedTo]="secondList" #firstList="cdkDropList"
+               (cdkDropListDropped) = "drop($event)">      
+               <div *ngFor = "let item of personalList" class = "divlayout" cdkDrag>
+                  {{item.name}}
+               </div>
+
+            </div>
+
+         </div>
+         <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+            <div cdkDropList [cdkDropListData]="userlist"
+            [cdkDropListConnectedTo]="firstList" #secondList="cdkDropList"
+            (cdkDropListDropped)="drop($event)">
+
+            <div *ngFor = "let item of userlist" class = "divlayout" cdkDrag>
+                {{item.name}}
+             </div>
+
+            </div>
+         </div>
+</div>
+
+

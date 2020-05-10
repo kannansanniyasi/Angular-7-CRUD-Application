@@ -1,0 +1,89 @@
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h4 style="text-align: center;">{{title}}</h4>
+    </div>
+</div>
+
+<div class="row">
+        <div *ngIf="!btlFlg"  class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <h3>Create User</h3>
+            <form (ngSubmit)="saveUser()">
+                
+                <span class="text-success" *ngIf="null!=successMsg && successMsg!=''">{{successMsg}}</span>
+                <span class="text-danger" *ngIf="null!=errorMsg && errorMsg!=''">{{errorMsg}}</span>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required [(ngModel)]="user.name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required [(ngModel)]="user.email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" required [(ngModel)]="user.phone">
+                </div>
+                <button  type="submit"  class="btn btn-success">Submit</button>
+                <button *ngIf="btlFlg" type="Update"  class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+                
+        <div *ngIf="btlFlg"  class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <h3>Update User</h3>
+            <form (ngSubmit)="updateUserData()">
+                
+                <span class="text-success" *ngIf="null!=successMsg && successMsg!=''">{{successMsg}}</span>
+                <span class="text-danger" *ngIf="null!=errorMsg && errorMsg!=''">{{errorMsg}}</span>
+                <input type="hidden" class="form-control" id="id"  name="name"  [(ngModel)]="user.id">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required [(ngModel)]="user.name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required [(ngModel)]="user.email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" required [(ngModel)]="user.phone">
+                </div>
+                <button *ngIf="btlFlg" type="Update"  class="btn btn-success">Update</button>
+            </form>
+        </div>
+
+        <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <a href="http://localhost:8200/application/user/exportExcel" class="btn btn-primary">Download</a>
+            <br>
+            <a (click)="exportExcel()" class="btn btn-primary">Export Excel</a>
+            <table style="margin-top: 10%;" class="table">
+                <thead>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </thead>
+                <tr *ngFor="let user of users | async;let indexNumber=index;">
+                    <td>{{indexNumber+1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>
+                        <button (click)="deleteUser(user)">Delete</button>
+                        <button (click)="updateUser(user)">Update</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+</div>
+
+

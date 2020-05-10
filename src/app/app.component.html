@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row" style="background-color: red;">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="text-align: center;">
+      <h3 class="text-success">Human Resources Management System(HRMS)</h3>
+      <span style="float: right;color: white;">{{currentData}}</span>
+    </div>
+    <div class="row">
+      <nav class="navbar navbar-expand-sm">
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee">Employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact">Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/user">User Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/upload">Upload File</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/virtual">Virtual Scrolling/Drap Drop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/animation">Animations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/material">Materials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/phpExmaple">PHP Example</a>
+          </li>
+          
+          
+        </ul>
+
+      </nav>
+    </div>
+  </div>
+  <div class="row" style="background-color: violet;">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+

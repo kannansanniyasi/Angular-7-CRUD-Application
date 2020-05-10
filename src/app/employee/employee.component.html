@@ -1,0 +1,113 @@
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h4 style="text-align: center;">{{title}}</h4>
+    </div>
+</div>
+
+<div class="row">
+        <div *ngIf="!disflg" class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <h3>Create Employee</h3>
+            <form (ngSubmit)="doSaveEmp()">
+                
+                <span class="text-success" *ngIf="null!=successMsg && successMsg!=''">{{successMsg}}</span>
+                <span class="text-danger" *ngIf="null!=errorMsg && errorMsg!=''">{{errorMsg}}</span>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" [(ngModel)]="employee.name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="employee.email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" [(ngModel)]="employee.phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select class="form-control" id="state" name="state" [(ngModel)]="employee.state">
+                        <option *ngFor="let s of stateList">{{s}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="County">Country:</label>
+                    <select class="form-control" id="country" name="country" [(ngModel)]="employee.country">
+                        <option *ngFor="let c of countryList">{{c}}</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+
+        <div *ngIf="disflg" class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <h3>Update Employee</h3>
+            <form (ngSubmit)="doUpdateEmp()">
+                
+                <span class="text-success" *ngIf="null!=successMsg && successMsg!=''">{{successMsg}}</span>
+                <span class="text-danger" *ngIf="null!=errorMsg && errorMsg!=''">{{errorMsg}}</span>
+                <input type="hidden" id="id" name="id" [(ngModel)]="employee.id">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" [(ngModel)]="employee.name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="employee.email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone" [(ngModel)]="employee.phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select class="form-control" id="state" name="state" [(ngModel)]="employee.state">
+                        <option *ngFor="let state of stateList">{{state}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="County">Country:</label>
+                    <select class="form-control" id="country" name="country" [(ngModel)]="employee.country">
+                        <option *ngFor="let country of countryList">{{country}}</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+        </div>
+
+        <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+            <table style="margin-top: 10%;" class="table">
+                <thead>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Action</th>
+                </thead>
+                <tr *ngFor="let emp of employees;let indexNumber=index;">
+                    <td>{{indexNumber+1}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.phone}}</td>
+                    <td>{{emp.state}}</td>
+                    <td>{{emp.country}}</td>
+                    <th>
+                        <button type="submit" class="btn btn-danger" (click)="deleteEmp(emp)">Delete</button>
+                        <button type="submit" class="btn btn-danger" (click)="updateEmp(emp)">Update</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        </div>
+
+</div>
